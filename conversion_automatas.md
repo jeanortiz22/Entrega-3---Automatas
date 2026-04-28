@@ -34,29 +34,7 @@ Estos procesos permiten demostrar la equivalencia entre diferentes representacio
 
 ##  Paso 1: ER → AFND (Método de Thompson)
 
-```mermaid
-graph LR
-    q0((q0)):::inicio -->|ε| q1
-    q1 -->|ε| q2
-    q1 -->|ε| q4
-    q2 -->|a| q3
-    q4 -->|b| q5
-    q3 -->|ε| q6
-    q5 -->|ε| q6
-    q6 -->|ε| q1
-    q6 -->|ε| q7
-    q7 -->|ε| q8
-    q8 -->|a| q9
-    q9 -->|ε| q10
-    q10 -->|b| q11
-    q11 -->|ε| q12
-    q12 -->|b| q13
-    q13((qf)):::final
-
-    classDef inicio fill:#87CEFA,stroke:#000,stroke-width:2px;
-    classDef final fill:#90EE90,stroke:#000,stroke-width:2px;
-
-```
+![ER inicial](imagenes/1.png)
 ---
 
 ## Paso 2: AFND → AFD (Construcción de subconjuntos)
@@ -70,25 +48,101 @@ graph LR
 | C      | B | D |
 | D      | B | A |
 
+--- 
+
 ## AFD Final
 
-graph LR
-    A((A)):::inicio -->|a| B
-    A -->|b| A
+![AFD final](imagenes/2.png)
 
-    B((B)) -->|a| B
-    B -->|b| C
-
-    C((C)) -->|a| B
-    C -->|b| D
-
-    D((D)):::final -->|a| B
-    D -->|b| A
-
-    classDef inicio fill:#87CEFA,stroke:#000,stroke-width:2px;
-    classDef final fill:#90EE90,stroke:#000,stroke-width:2px;
+--- 
 
 ## Conclusiones
 - Se requiere un paso intermedio (AFND)
 - Se eliminan transiciones ε
 - Se obtiene un autómata determinista equivalente
+
+---
+
+#  Parte 2: Conversión de AFD → Gramática
+
+## Descripción
+
+Este proceso permite convertir un Autómata Finito Determinista (AFD) en una **Gramática Regular (Tipo 3)**.
+
+---
+
+## Idea clave
+
+- Cada estado del AFD → un **no terminal**
+- Cada transición → una **producción**
+- Cada estado final → producción con **ε**
+
+---
+
+## AFD dado
+
+![AFD dado](imagenes/3.png)
+---
+
+## Tabla de transición
+
+| Estado | a | b |
+|--------|---|---|
+| S      | A | S |
+| A      | A | S |
+
+---
+
+## Paso 1: Asignar variables
+
+Cada estado del AFD se convierte en una variable (no terminal):
+
+- S → estado inicial  
+- A → estado  
+
+---
+
+## Paso 2: Crear producciones
+
+Se crean producciones a partir de las transiciones del AFD:
+
+- δ(S, a) = A → S → aA  
+- δ(S, b) = S → S → bS  
+- δ(A, a) = A → A → aA  
+- δ(A, b) = S → A → bS  
+
+---
+
+## Paso 3: Estado final
+
+Como el estado **A** es de aceptación, se agrega:
+
+A → ε
+
+---
+
+## Gramática final
+
+S → aA | bS
+
+A → aA | bS | ε
+
+
+---
+
+## Conclusiones
+
+- El proceso es directo y sistemático  
+- Cada estado se convierte en una variable  
+- Cada transición se convierte en producción  
+- Los estados finales generan ε  
+- Se mantiene el mismo lenguaje del AFD  
+
+---
+
+## Errores comunes
+
+- Olvidar agregar ε en estados finales  
+- No incluir todas las transiciones  
+- Confundir estados con símbolos  
+- Escribir mal las producciones  Mira como quedo, esta bien y entendible?
