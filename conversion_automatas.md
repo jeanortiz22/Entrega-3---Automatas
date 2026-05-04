@@ -14,10 +14,14 @@
 
 ##  Introducción
 
+¿Alguna vez te preguntaste cómo sabe una computadora si una contraseña 
+tiene el formato correcto, o si un correo electrónico está bien escrito? 
+Por dentro, usa exactamente lo que veremos a continuación.
+
 En este documento se presentan dos procesos fundamentales dentro de la teoría de autómatas:
 
-- Conversión de **Expresión Regular (ER) a Autómata Finito Determinista (AFD)**  
-- Conversión de **Autómata Finito Determinista (AFD) a Gramática Regular**
+- Conversión de **Expresión Regular (ER) a Autómata Finito Determinista (AFD)** -es decir, pasar de una "receta" a una "máquina".
+- Conversión de **Autómata Finito Determinista (AFD) a Gramática Regular** -es decir, pasar de la "máquina" a un "manual de instrucciones escrito".
 
 Estos procesos permiten demostrar la equivalencia entre diferentes representaciones de los lenguajes regulares.
 
@@ -37,15 +41,16 @@ Significa que estamos buscando cualquier palabra que esté formada por letras "a
 
 ##  Paso 1: ER → AFND (Método de Thompson)
 
-![ER inicial](imagenes/1.png)
----
-
 Imagina que la Expresión Regular es como un manual de instrucciones para armar un mueble complejo. Si intentas armarlo todo de golpe y a la perfección, lo más probable es que te confundas. Las computadoras sienten lo mismo.
 
 Por eso, usamos la "Construcción de Thompson" para crear un primer prototipo o esqueleto, conocido como Autómata Finito No Determinista (AFND). En esta etapa, en lugar de encajar todo a la perfección, unimos las distintas partes de nuestra fórmula usando "puentes mágicos" que se pueden cruzar sin gastar ninguna letra. A estos puentes los llamamos transiciones ε (épsilon).
 
 Piensa en las transiciones ε como si fueran cinta adhesiva temporal: nos permiten pegar rápidamente todas las partes de la expresión regular para ver la forma general del recorrido, aunque el resultado sea un mapa con múltiples caminos que tendremos que limpiar más adelante.
 
+---
+
+![ER inicial](imagenes/1.png)
+---
 
 ## Paso 2: AFND → AFD (Construcción de subconjuntos)
 Siguiendo con la idea del paso anterior, ya tenemos nuestro "esqueleto" unido con cinta adhesiva (las transiciones ε). El problema es que es inestable e impredecible. Si le damos este borrador a un programa de computadora, se va a confundir, porque en un mismo punto podría tener varias opciones distintas para una misma letra, o incluso moverse sin recibir ninguna letra.
@@ -69,6 +74,28 @@ Un autómata limpio, determinista y seguro. No importa qué palabra intentes pro
 
 ![AFD final](imagenes/2.png)
 
+### Probemos con una palabra real
+
+Veamos si la palabra **"aabb"** es aceptada. Para ser válida 
+debe terminar en "abb":
+
+| Letra leída | Estábamos en | Vamos a |
+|-------------|--------------|---------|
+| a           | A            | B       |
+| a           | B            | B       |
+| b           | B            | C       |
+| b           | C            | D √     |
+
+Llegamos a D, que es el estado de aceptación. La palabra **"aabb"** es válida.
+
+Ahora probemos **"ab"** , que NO debería ser aceptada:
+
+| Letra leída | Estábamos en | Vamos a |
+|-------------|--------------|---------|
+| a           | A            | B       |
+| b           | B            | C       |
+
+Terminamos en C, no en D. Por esto la palabra **"ab"** es rechazada.
 --- 
 
 ## Conclusiones
@@ -213,4 +240,4 @@ Así queda nuestra Gramática Regular:
 - Olvidar agregar ε en estados finales  
 - No incluir todas las transiciones  
 - Confundir estados con símbolos  
-- Escribir mal las producciones  Mira como quedo, esta bien y entendible?
+- Escribir mal las producciones 
