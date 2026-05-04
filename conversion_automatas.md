@@ -61,10 +61,10 @@ Para solucionar esto, usamos la "Construcción de subconjuntos". Lo que hacemos 
 
 | Estado | a | b |
 |--------|---|---|
-| A      | B | A |
+| →A     | B | A |
 | B      | B | C |
 | C      | B | D |
-| D      | B | A |
+| *D     | B | A |
 
 --- 
 
@@ -72,7 +72,7 @@ Para solucionar esto, usamos la "Construcción de subconjuntos". Lo que hacemos 
 
 Un autómata limpio, determinista y seguro. No importa qué palabra intentes procesar, la máquina fluirá por este mapa de forma automática y siempre sabrá si la palabra termina correctamente en la meta (D) o no.
 
-![AFD final](imagenes/2.png)
+<img src="imagenes/2.png" width="900"/>
 
 ### Probemos con una palabra real
 
@@ -96,6 +96,7 @@ Ahora probemos **"ab"** , que NO debería ser aceptada:
 | b           | B            | C       |
 
 Terminamos en C, no en D. Por esto la palabra **"ab"** es rechazada.
+
 --- 
 
 ## Conclusiones
@@ -136,16 +137,16 @@ Para traducir el mapa de la máquina a un manual escrito, solo necesitamos aplic
 ## AFD dado
 Vamos a trabajar con esta máquina de dos estados:
 
-![AFD dado](imagenes/3.png)
+<img src="imagenes/3.png" width="600"/>
+
 ---
 
 ## Tabla de transición
 
 | Estado | a | b |
 |--------|---|---|
-| S      | A | S |
-| A      | A | S |
-
+| →S     | A | S |
+| *A     | A | S |
 
 
 Si miramos la máquina, funciona de esta manera:
