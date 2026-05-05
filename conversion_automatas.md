@@ -110,10 +110,10 @@ Terminamos en C, no en D. Por esto la palabra **"ab"** es rechazada.
 
 ## Descripción
 ---
-Este proceso permite convertir un Autómata Finito Determinista (AFD) en una **Gramática Regular (Tipo 3)**.
+Este proceso permite convertir un Autómata Finito Determinista (AFD) en una **Gramática Regular **.
 
 
-Ahora vamos a hacer el proceso inverso. Imagina que el autómata (el AFD) es una máquina física y perfecta que ya funciona. Nuestro objetivo ahora es escribir un manual de instrucciones para que cualquier persona, sin tener la máquina, pueda fabricar las mismas palabras paso a paso. A este manual lo llamamos Gramática Regular (Tipo 3).
+Ahora vamos a hacer el proceso inverso. Imagina que el autómata (el AFD) es una máquina física y perfecta que ya funciona. Nuestro objetivo ahora es escribir un manual de instrucciones para que cualquier persona, sin tener la máquina, pueda fabricar las mismas palabras paso a paso. A este manual lo llamamos Gramática Regular.
 
 
 ## Idea clave
